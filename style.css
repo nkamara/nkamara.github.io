@@ -1,0 +1,25 @@
+.intro {
+        text-align: center;
+	background-color: black;
+        font-size: 12pt;
+        color: orange;
+       	text-align: left;
+        width: 100%;
+}
+
+.center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 25%;
+
+}
+
+.work_experience {
+	margin: 10px;
+	text-align: left;
+	letter-spacing: 1px;
+	text-decoration: none;
+	line-height: auto;
+	word-spacing: auto;
+    }
