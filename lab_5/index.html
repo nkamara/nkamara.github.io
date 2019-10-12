@@ -10,11 +10,12 @@
   <div class="container">
     <div class="wrapper">
       <div class="header">Test JSON page</div>
-      <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
-      <button class="button" onclick="console.log('You haven\'t written a function yet!');">Click me to replace list
+      
+      <button class="button" onclick="console.log(countries.name);">Click me to replace list
         entries</button>
       <div class="content">
-        <ul class="instructions">
+        <ol start="50">
+          <li>function randomizeList(countries)</li>
           <li>At the click of the button above</li>
           <li>Replace this list</li>
           <li>With an ordered list</li>
@@ -27,13 +28,14 @@
             <li>Write it into your copy of the Lab HTML</li>
             <li>And save it for submission</li>
           </ol>
-        </ul>
+        </ol>
       </div>
       <div class="footer"></div>
     </div>
   </div>
   <script>
     /* N.B. - For your lab, use the variable "countries" now available on the window space */
+    var countries, text, cLen, i;
     const countries = [
       { "name": "Afghanistan", "code": "AF" },
       { "name": "Åland Islands", "code": "AX" },
@@ -279,6 +281,16 @@
       { "name": "Zambia", "code": "ZM" },
       { "name": "Zimbabwe", "code": "ZW" }
     ]
+    cLen = randomizeList(countries.length);
+
+    text = "<ol>";
+    for (i = 0; i < cLen; i++) {
+      text += "<li>" + countries[i] + "</li>";
+    }
+    text += "</ol>";
+
+    document.getElementById("demo").innerHTML = text;
+
     console.log("List of countries in the world", countries);
   </script>
 </body>
