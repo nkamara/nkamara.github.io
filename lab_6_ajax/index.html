@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Test AJAX page</title>
+    <link rel="stylesheet" type="text/css" href="./lab_styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="header">Test AJAX page</div>
+        <button class="button" onclick="loadData()">Load Some JSON</button>
+        <div class="content"><ol class= "instructions"></ol></div>
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script>
+      function loadData() {
+        fetch("ajax_sample.json")
+          .then(res => res.json())
+          // .then(res => res.map(c => c.name))
+          .then(res => {
+
+            const content = document.querySelector(".instructions");
+            content.innerHTML = "";
+
+            // you can do work here
+            // all the work from the function in lab 5
+            // that loads data into your HTML
+
+            let ol = document.createElement("ol")
+            
+            for (let i = 0; i < 15; i++) {
+              const selectNumber = getRandomIntInclusive(0, 242);
+              let el = document.createElement("li");
+            
+              el.innerText = res[selectNumber].code + " " + res[selectNumber].name;
+              content.appendChild(el);
+            }
+          });
+
+
+
+        function getRandomIntInclusive(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+      }
+    </script>
+  </body>
+</html>
