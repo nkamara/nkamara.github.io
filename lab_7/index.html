@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Test AJAX page</title>
+    <link rel="stylesheet" type="text/css" href="./lab_styles.css" />
+  </head>
 
-<head>
-  <title>Test AJAX page</title>
-  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
-</head>
-
-<body>
-  <div class="container">
-    <div class="wrapper">
-      <div class="header">UMD Bus Routes</div>
-      <button class="button" onclick="loadData()">Load Some JSON</button>
-      <div class="content"></div>
-      <div class="footer"></div>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="header">UMD Bus Routes</div>
+        <button class="button" onclick="loadData()">Load Some JSON</button>
+        <div class="content"><ol class= "instructions"></ol></div>
+        <div class="footer"></div>
+      </div>
     </div>
-  </div>
-  <script>
-    function loadData() {
-      fetch('https://api.umd.io/')
-        .then(res => res.json())
-        .then(res => {
-          // you can now work in this area
-
-          return res;
-        })
-        .then(data => document.querySelector(".content").innerText = data);
-    }
-  </script>
-</body>
-
+    <script>
+      
+      function loadData() {
+        return fetch("https://api.umd.io/v0/bus/routes")
+        .then(res => res.json(), {
+          method :'get'
+          })
+        .then(data => (document.querySelector(".content").innerText = data));
+            // you can now work in this area
+           
+            const content = document.querySelector(".instructions");
+            content.textContent = "";
+            let el = document.createElement("li");
+            el.innerText = res[selectNumber].route_id + " " + res[selectNumber].title;
+            content.appendChild(el);
+            // const ul = document.getElementById('author');
+          }
+    </script>
+  </body>
 </html>
