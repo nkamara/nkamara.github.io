@@ -11,23 +11,43 @@
     <div class="wrapper">
       <div class="header">API Loader</div>
       <button class="button" onclick="loadData()">Load Some JSON from a server</button>
-      <div class="content"></div>
+      <div class="content"><ul class="instructions"></ul></div>
       <div class="footer"></div>
     </div>
   </div>
   <script>
     function loadData() {
       console.log('fetch'); // confirm code is running on click
-      fetch('/api')
+      fetch('https://api.umd.io/v0/courses/list')
         .then(res => res.json())
         .then(res => {
           console.log(res); // logging step to check what we got
           return res;
         })
-        .then(res => res.data.map(c => c.route_id))
+        .then(res => res.map(x => {
+              course = {course_id:x.course_id, name:x.name}
+              return course
+          }))
+
+             //#4
+            // you can now worsk in this area
+          .then(res => {
+            const content = document.querySelector(".instructions");
+            content.innerHTML = "";
+            for (let i = 0; i < res.length; i++) {
+              let el = document.createElement("li");
+              el.innerHTML = res.course_id + " : "  + res.name;
+              content.appendChild(el);
+              return res
+            }})
+
+
+        .then(res => res.data.map(c => c.course_id))
         .then(codes => document.querySelector(".content").innerText = codes);
     }
   </script>
 </body>
 
 </html>
+
+<!-- // *filter + map+ -->
