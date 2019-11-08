@@ -17,17 +17,20 @@
     <script>
       function loadData() {
         fetch("https://api.umd.io/v0/bus/routes")
-          .then(res => res.json()) //#2
           .then(res => {
             console.log(res);
             return res
-          }
-          ) //#3
-          .then(res => res.map(x => {
+          })
+          .then(res => res.json()) //#2
+          
+          //#3
+          .then(res => 
+            g = res;
+            routes = g.map(x => {
               route = {route_id:x.route_id, title:x.title}
+              console.log(route);
               return route
           }))
-
              //#4
             // you can now worsk in this area
           .then(res => {
@@ -39,7 +42,6 @@
               content.appendChild(el);
               return res
             }})
-
             // const ul = document.getElementById('author');
           // .then(res => res.map(a =>
           // route = ({route_id:a, title:a})))

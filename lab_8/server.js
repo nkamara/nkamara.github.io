@@ -48,17 +48,16 @@ app.get("/api", (req, res) => {
     .then(data => {
       const courseidArray = data.filter(c => c.dept_id === "INST");
       return courseidArray
-
-        .then(data => {
-          const coursetitleArray = data.map(c => `${c.course_id} : ${c.name}`);
-          console.log(coursetitleArray);
-          res.send({ data: coursetitleArray });
+    })
+    .then(data => {
+      const coursetitleArray = data.map(c => `${c.course_id} : ${c.name}`);
+      console.log(coursetitleArray);
+      res.send({ data: coursetitleArray });   
         })
-        .catch(err => {
-          console.log(err);
-          res.redirect("/error");
+      
+    .catch(err => {
+       console.log(err);
+       res.redirect("/error");
         });
     });
-});
-
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
