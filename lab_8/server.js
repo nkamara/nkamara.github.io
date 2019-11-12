@@ -53,7 +53,8 @@ app.get("/api", (req, res) => {
       const coursetitleArray = data.map(c => `${c.course_id} : ${c.name}`);
       console.log(coursetitleArray);
       res.send({ data: coursetitleArray });   
-        })
+      return coursetitleArray
+    })
       
     .catch(err => {
        console.log(err);
